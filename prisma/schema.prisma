@@ -9,3 +9,32 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model Material {
+  id            Int     @id @default(autoincrement())
+  name          String
+  english_name  String
+  color         String
+  japan         String
+  details Detail[]
+}
+
+model Detail {
+  id            Int       @id @default(autoincrement())
+  use           String
+  country       String
+  name          String
+  english_name  String
+  other_name    String
+  ins_number    String
+  item_number   String
+  function      String
+  standard_for_use        String
+  url_for_use             String
+  standard_for_component  String
+  url_for_component       String
+  created_at    DateTime
+  updated_at    DateTime
+  material_id   Int
+  material      Material  @relation(fields: [material_id], references: [id])
+}

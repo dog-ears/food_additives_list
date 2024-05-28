@@ -16,7 +16,10 @@ model Material {
   english_name  String
   color         String
   japan         String
-  details Detail[]
+  parent_id     Int?
+  parent        Material?   @relation("ParentChildren", fields: [parent_id], references: [id])
+  details       Detail[]
+  children      Material[]  @relation("ParentChildren")
 }
 
 model Detail {
